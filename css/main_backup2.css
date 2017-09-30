@@ -7,6 +7,7 @@ body {
     min-height: 100vh;
     line-height: 1.4rem;
     color: #333;
+    /*     padding: 0 30px 30px 30px; */
     box-sizing: border-box;
     margin: 0 30px 30px 30px;
 }
@@ -47,57 +48,35 @@ body {
 .nav-links a:hover {
     color: #33ccff;
 }
-/* some... STYLES */
+/* MAIN STYLES */
 .container {
     width: 100%;
     height: 92vh;
     padding-top: 8vh;
     background-color: rgba(200, 200, 30, 0.2);
+    display: flex;
 }
 .content-container {
+    flex: 0 1 60%;
     display: grid;
-    grid-template-rows: 2fr 1fr 4Fr;
-    border: 1px solid #000;
-    grid-column-gap: 0.8rem;
+    grid-template-columns: repeat(6, 1fr);
+    border: 1px solid #999;
+    grid-column-gap: 5px;
     grid-row-gap: 3rem;
-    height: 75vh;
-    width: 60%;
-    padding: 1rem;
+    /*     height: 75vh; */
+    /*     width: 60%; */
+    padding: 2rem;
     margin: 5vh auto;
-  }
-.project-row {
-    display: grid;
-    grid-template-columns: 4fr 4fr 3fr;
-    justify-items: stretch;
     align-items: center;
-    grid-column-gap: 0.8rem;
-    grid-row: 1;
-    min-height: 0;
-    min-width: 0;
-         }
-.new-projects-row {
-    grid-row: 2;
-    display: grid;
-    grid-template-columns: 4fr 4fr 3fr;
-    align-self: center;
-     grid-column-gap: 0.8rem;
-}
-.prio-and-date-picker {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 0.5rem;
-}
-.issues-row {
-    grid-row: 3;
-    align-items: stretch;
-    align-self: stretch;
-    overflow-y: scroll;
+    grid-template-rows: repeat(15, 1fr);
 }
 .projects {
+    /*     box-sizing: border-box; */
     border: 1px solid #999;
     background-color: #eee;
     overflow-y: scroll;
-    align-self: stretch;
+    grid-column: 2 / 4;
+    grid-row: 1 / 5;
 }
 .project-list {
     list-style: none;
@@ -113,9 +92,12 @@ body {
     background-color: #dcb;
 }
 .new-project-name {
-            align-self: center;
+    grid-column: 4 / 5;
+    grid-row: 1 / 5;
+    align-self: center;
     height: 30px;
-        border: 1px solid #aaa;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #aaa;
 }
 .project-create,
 .issue-create {
@@ -127,12 +109,21 @@ body {
     border: 1px solid #aaa;
 }
 .project-create {
+    grid-column: 5 / 6;
+    grid-row: 1 / 5;
 }
 .project-create:hover,
 .issue-create:hover {
     background-color: #dcb;
 }
+.row-2 {
+    height: 1.5rem;
+}
 .priority-dropdown {
+    grid-column: 2 / 3;
+    grid-row: 5 / 7;
+    width: 100%;
+    max-width: 100px;
     background-color: rgba(255, 255, 255, 0.8);
     color: #444;
 }
@@ -140,26 +131,24 @@ body {
     background-color: #dcb;
 }
 .date-picker {
-    background-color: #aaa;
+    grid-column: 3 / 4;
+    grid-row: 5 / 7;
 }
 .new-issue-name {
+    grid-column: 4 / 5;
+    grid-row: 5 / 7;
     background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid #aaa;
 }
+.issue-create {
+    grid-column: 5 / 6;
+    grid-row: 5 / 7;
+}
 .issue-list {
+    grid-column: 2 / 6;
+    grid-row: 7 / 16;
+    align-self: stretch;
     list-style: none;
     border: 1px solid #aaa;
     padding: 1rem;
-    background-color: #eee;
-    align-self: stretch;
-    min-height: 0;
-    overflow-y: scroll;
-}
-
-
-@media (max-width: 500px) {
-    .project-row {
-        grid-template-columns: none;
-        grid-template-rows: 4fr 1fr 1fr;
-        }
 }
