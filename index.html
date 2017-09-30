@@ -32,7 +32,7 @@
         <input class="new-project-name" style="padding=0;" name="" type="text" value=""/>
         <input class="project-create"  name="project-name" type="submit" value="Create Project"/>
         <select class="priority-dropdown row-2">
-          <option value="" disabled="disabled" selected="selected">Priority></option>
+          <option value="" disabled="disabled" selected="selected">Priority</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -40,9 +40,20 @@
         <div class="date-picker row-2">
           Date-Picker comes here
         </div>
-        <input class="text-input row-2" name="" type="text" value="fdasf"/>
-        <input class="issue-creator row-2" name="" type="submit" value="Create Issue"/>
-        <ul class="issue-list">
+        <input class="new-issue-name row-2" name="" type="text" value="fdasf"/>
+        <input class="issue-create row-2" name="" type="submit" value="Create Issue"/>
+        <div class="issue-list">
+          <table class="issue-table">
+            <tr class="table-head">
+              <th classs="issue-title"></th>
+            </tr>
+            <tr>
+              <td>Read documentation</td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <ul class="issue-list" style="display:none">
           <li>Read documentation</li>
           <li>Do the exercises in RiotJS Guide</li>
           <li>Test reactive data-flow in RiotJS</li>
