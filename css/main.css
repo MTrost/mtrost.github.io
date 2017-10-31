@@ -96,12 +96,6 @@ body {
     align-self: stretch;
     overflow-y: scroll;
 }
-.projects {
-    border: 1px solid #999;
-    background-color: #eee;
-    overflow-y: scroll;
-    align-self: stretch;
-}
 .project-list {
     list-style: none;
     position: relative;
