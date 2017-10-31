@@ -67,7 +67,7 @@ body {
     width: 60%;
     padding: 1rem;
     margin: 5vh auto;
-  }
+}
 .project-row {
     display: grid;
     grid-template-columns: 4fr 4fr 3fr;
@@ -77,13 +77,13 @@ body {
     grid-row: 1;
     min-height: 0;
     min-width: 0;
-         }
+}
 .new-projects-row {
     grid-row: 2;
     display: grid;
     grid-template-columns: 4fr 4fr 3fr;
     align-self: center;
-     grid-column-gap: 0.8rem;
+    grid-column-gap: 0.8rem;
 }
 .prio-and-date-picker {
     display: grid;
@@ -104,6 +104,7 @@ body {
 }
 .project-list {
     list-style: none;
+    position: relative;
     padding: 1rem 2rem 1rem 1rem;
 }
 .projects > ul > li:nth-child(1) {
@@ -166,7 +167,9 @@ body {
     min-height: 0;
     overflow-y: scroll;
 }
-
+.issue-table {
+    width: 100%;
+}
 
 @media (max-width: 1000px) {
     html {
