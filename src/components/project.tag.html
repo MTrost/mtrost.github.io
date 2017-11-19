@@ -1,0 +1,29 @@
+<project>
+  <li onclick={select}>
+    { name }
+  </li>
+
+  <script>
+
+   var tag = this,
+       bus = opts.bus;
+//       selectedProject = 100;
+
+
+
+   //   this.mixin(SharedMixin);
+
+   tag.select = (el) => {
+
+     bus.trigger('projectSelected', el, tag.uuid);
+   }
+
+  </script>
+
+  <style>
+   .selected {
+       background-color:       #dcb;
+   }
+  </style>
+
+</project>

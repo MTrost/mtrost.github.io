@@ -119,6 +119,7 @@ body {
 .new-issue-name:hover {
     border: 2.5px solid #aaa;
 }
+
 .project-create,
 .issue-create {
     height: 30px;
@@ -225,9 +226,5 @@ body {
         justify-self: right;
         padding: ;
     }
-    .issue-list {
-        align-self: stretch;
-        grid-column: 1;
-        grid-row: 2 / 4;
-    }
+
 }

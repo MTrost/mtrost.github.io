@@ -1,0 +1,21 @@
+<projectForm id="newProject">
+  <input class="new-project-name" style="padding=0;" name="name" type="text" value=""/>
+  <input class="project-create"  onclick={submit} type="submit" value="Create Project"/>
+
+
+  <script>
+   var tag = this;
+
+   var projects = opts.projects;
+
+   tag.submit = () => {
+     if (tag.name.value) {
+
+       projects.add({ "name" : tag.name.value }, tag);
+       tag.name.value = '';
+     }
+   }
+
+  </script>
+
+</projectForm>

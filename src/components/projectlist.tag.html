@@ -1,0 +1,62 @@
+<project-list>
+  <div class="projects">
+    <ul class="project-list">
+      <project bus={ bus } each="{ allProjects() }"></project>
+    </ul>
+  </div>
+
+  <script>
+
+   var tag = this;
+
+   var projects = opts.projects;
+
+   var bus = projects.bus;
+
+   var selectedProject = "";
+
+   bus.on('projectsUpdated', () => {
+     this.update();
+   });
+
+   bus.on('projectSelected', (el) => {
+     if(!this.selectedProject) {
+       this.selectedProject = el.srcElement;
+       this.selectedProject.classList.toggle('selected');
+     }
+     else if (this.selectedProject === el.srcElement) {
+       this.selectedProject.classList.toggle('selected');
+       this.selectedProject = "";
+     }
+     else {
+       this.selectedProject.classList.toggle('selected');
+       this.selectedProject = el.srcElement;
+       this.selectedProject.classList.toggle('selected');
+     }
+   });
+
+
+     allProjects() {
+       return projects.all();
+     }
+
+     this.on('mount', () => {
+       projects.fetch();
+     });
+
+
+  </script>
+
+  <style>
+
+   project-list {
+       border: 1px solid #999;
+       background-color: #eee;
+       overflow-y: scroll;
+       align-self: stretch;
+   }
+
+
+  </style>
+
+</project-list>

@@ -1,0 +1,55 @@
+<issue-list>
+  <ul>
+
+    <issue each="{ allTodos() }"></issue>
+
+  </ul>
+
+  <script>
+   var tag = this;
+
+   var todos = opts.todos;
+
+   var bus = todos.bus;
+
+   var selectedProject = "";
+
+   allTodos() {
+     return todos.all(selectedProject);
+   }
+
+   this.on('mount', () => {
+     todos.fetch();
+   });
+
+   bus.on('todosUpdated', () => {
+     tag.update();
+   });
+
+   bus.on('projectSelected', (el, uuid) => {
+     debugger;
+     if(selectedProject === uuid) {
+       selectedProject = "";
+     }
+     else {
+       selectedProject = uuid;
+     }
+//     debugger;
+     tag.update();
+   });
+
+
+  </script>
+
+
+
+  <style>
+   issue-list {
+       align-self: stretch;
+       grid-column: 1;
+       grid-row: 3 / 4;
+   }
+  </style>
+
+
+</issue-list>

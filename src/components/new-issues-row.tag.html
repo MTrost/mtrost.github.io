@@ -1,0 +1,74 @@
+<new-issues-row>
+  <div class="prio-and-date-picker">
+    <select name="priority" onclick={some} class="priority-dropdown row-2">
+      <option  selected="selected">Priority</option>
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+    </select>
+    <input ref="priority" name="date" class="date-picker row-2" name="datepicker" type="text" value="Pick a date"/>
+  </div>
+  <input class="new-issue-name row-2" name="name" type="text" value=""/>
+  <input class="issue-create row-2" name="" onclick={submit} type="submit" value="Create Issue"/>
+
+  <script>
+   //   console.log(opts);
+   var tag = this;
+   var todos = opts.todos;
+   var bus = todos.bus;
+   var  selectedProject = "";
+
+   bus.on('projectSelected', (el, uuid) => {
+
+   if (selectedProject === uuid) {
+       this.selectedProject = "";
+     }
+     else {
+       this.selectedProject = uuid;
+     }
+   });
+
+   tag.submit = () => {
+
+     if (tag.priority.value === 'Priority') {
+       alert("Assign a priority to new todo");
+     }
+     else if (tag.date.value === 'Pick a date') {
+       alert("Set a due date for new todo");
+     }
+     else if (!this.selectedProject) {
+       alert("To which project does the todo belong");
+     }
+     else if (tag.name.value === "") {
+       alert("Set a name for new todo");
+     }
+     else {  todos.add({
+       "name" : tag.name.value,
+       "date" : tag.date.value,
+       "priority": tag.priority.valu,
+       "project": this.selectedProject
+     });
+       tag.name.value = '';
+     }
+   }
+
+   bus.on('projectSelected', (uuid) => {
+     if (selectedProject === uuid) {
+       selectedProject = "";
+     }
+     else {
+       selectedProject = uuid;
+     }
+   });
+
+   tag.update();
+
+
+   getValue = (name) => {
+     return document.getElementsByClassName('name').value;
+   }
+
+  </script>
+
+
+</new-issues-row>

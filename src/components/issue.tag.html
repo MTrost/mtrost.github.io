@@ -1,0 +1,28 @@
+<issue if={ uuid }>
+  <li onclick={complete}>
+    <input type="checkbox" checked={ done } />
+    { name }
+    <span>&#128465;</span>
+  </li>
+
+  <script>
+   var tag = this;
+
+   complete(issue) {
+     debugger;
+     console.log(issue.uuid);
+   }
+
+  </script>
+
+  <style>
+   li {
+       list-style: none;
+   }
+   span {
+       float: right;
+   }
+  </style>
+
+
+</issue>
