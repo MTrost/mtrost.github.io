@@ -1,49 +1,87 @@
 <issue-list>
-  <ul>
+  <table>
 
-    <issue each="{ allTodos() }"></issue>
+    <tr>
+      <th class="table-heading"><a href="#">Done</a></th>
+      <th class="issue table-heading"><a href="#">Issue</a></th>
+      <th class="table-heading"><a href="#">Priority</a></th>
+      <th class="table-heading"><a href="#">Due Date</a></th>
+      <th class="table-heading"><a href="#">Project</a></th>
+    </tr>
 
-  </ul>
+    <tbody>
+      <tr  bus={ opts.bus } each="{ allTodos() }" data-is="issue">
+      </tr>
+    </tbody>
+  </table>
 
   <script>
-   var tag = this;
+   // Properties
+   const tag = this;
+   tag.todos = opts.todos;
+   tag.bus = tag.todos.bus;
+   tag.selectedProject = "";
 
-   var todos = opts.todos;
-
-   var bus = todos.bus;
-
-   var selectedProject = "";
-
-   allTodos() {
-     return todos.all(selectedProject);
+   // Functions
+   tag.allTodos = () => {
+     //     debugger;
+     return tag.todos.all(tag.selectedProject);
    }
+
+   // Listeners
+   tag.bus.on('todosUpdated', () => {
+     tag.update();
+   });
+
+   tag.bus.on('projectSelected', (el, project) => {
+//     debugger;
+     if(tag.selectedProject === project.uuid) {
+       tag.selectedProject = "";
+     }
+     else {
+       tag.selectedProject = project.uuid;
+     }
+     //     debugger;
+     tag.bus.trigger('todosUpdated');
+   });
 
    this.on('mount', () => {
      todos.fetch();
    });
-
-   bus.on('todosUpdated', () => {
-     tag.update();
-   });
-
-   bus.on('projectSelected', (el, uuid) => {
-     debugger;
-     if(selectedProject === uuid) {
-       selectedProject = "";
-     }
-     else {
-       selectedProject = uuid;
-     }
-//     debugger;
-     tag.update();
-   });
-
 
   </script>
 
 
 
   <style>
+   table {
+       width: 100%;
+       text-align: left;
+
+   }
+   .table-heading {
+       padding-top: 1em;
+   }
+   .table-heading a {
+       text-decoration: none;
+       color: #333;
+       width: 100%;
+   }
+   .table-heading:hover {
+       background-color: #dddddd;
+   }
+   table > :first-child {
+       border-bottom: double 2px #aaa;
+       text-transform: uppercase;
+
+   }
+   table tr {
+       border-bottom: dashed 1px #cbd;
+   }
+   .issue {
+       width: 40%;
+   }
+
    issue-list {
        align-self: stretch;
        grid-column: 1;

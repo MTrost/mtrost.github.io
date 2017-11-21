@@ -4,25 +4,21 @@
   </li>
 
   <script>
+   // Properties
+   var tag = this;
+   tag.bus = opts.bus;
 
-   var tag = this,
-       bus = opts.bus;
-//       selectedProject = 100;
-
-
-
-   //   this.mixin(SharedMixin);
-
+   // Functions
    tag.select = (el) => {
-
-     bus.trigger('projectSelected', el, tag.uuid);
+     el.preventDefault();
+     this.bus.trigger('projectSelected', el, tag._item);
    }
 
   </script>
 
   <style>
    .selected {
-       background-color:       #dcb;
+       background-color: #dcb;
    }
   </style>
 

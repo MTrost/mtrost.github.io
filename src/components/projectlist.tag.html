@@ -7,14 +7,17 @@
 
   <script>
 
-   var tag = this;
+   const tag = this;
+   tag.projects = opts.projects;
+   tag.bus = tag.projects.bus;
+   tag.selectedProject = "";
 
-   var projects = opts.projects;
+   // Functions
+   tag.allProjects = () => {
+     return this.projects.all();
+   }
 
-   var bus = projects.bus;
-
-   var selectedProject = "";
-
+   // Listeners
    bus.on('projectsUpdated', () => {
      this.update();
    });
@@ -35,14 +38,9 @@
      }
    });
 
-
-     allProjects() {
-       return projects.all();
-     }
-
-     this.on('mount', () => {
-       projects.fetch();
-     });
+   this.on('mount', () => {
+     this.projects.fetch();
+   });
 
 
   </script>

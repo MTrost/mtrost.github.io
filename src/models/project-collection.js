@@ -9,12 +9,19 @@ class ProjectCollection extends BaseCollection {
 //    console.log(this.bus);
 
     this.selectedProject = "";
+
+
+
   }
 
   add(model) {
     super.add(model);
     this.bus.trigger('projectsUpdated');
     }
+
+
+
+
 
 
 }

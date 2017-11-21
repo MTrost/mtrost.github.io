@@ -16,38 +16,40 @@
    var tag = this;
    var todos = opts.todos;
    var bus = todos.bus;
-   var  selectedProject = "";
+   var selectedProject = "";
 
-   bus.on('projectSelected', (el, uuid) => {
-
-   if (selectedProject === uuid) {
+   bus.on('projectSelected', (el, project) => {
+    // console.log(uuid);
+   if (selectedProject === project) {
        this.selectedProject = "";
      }
      else {
-       this.selectedProject = uuid;
+       this.selectedProject = project;
      }
    });
 
    tag.submit = () => {
+     console.log(selectedProject);
+     var priority = tag.priority.value,
+         date = tag.date.value,
+         project = this.selectedProject,
+         name = tag.name.value;
 
-     if (tag.priority.value === 'Priority') {
+     if (priority === 'Priority') {
        alert("Assign a priority to new todo");
      }
-     else if (tag.date.value === 'Pick a date') {
+     else if (date === 'Pick a date') {
        alert("Set a due date for new todo");
      }
-     else if (!this.selectedProject) {
+     else if (!selectedProject) {
        alert("To which project does the todo belong");
      }
-     else if (tag.name.value === "") {
+     else if (name === "") {
        alert("Set a name for new todo");
      }
-     else {  todos.add({
-       "name" : tag.name.value,
-       "date" : tag.date.value,
-       "priority": tag.priority.valu,
-       "project": this.selectedProject
-     });
+     else {
+       todos.add(name, date, priority, project);
+       console.log(project);
        tag.name.value = '';
      }
    }

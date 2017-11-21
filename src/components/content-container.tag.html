@@ -10,7 +10,7 @@
   <new-issues-row todos={ this.todos } class="new-projects-row"></new-issues-row>
 
 
-  <issue-list todos={ this.todos } class="issue-list"></issues-list>
+  <issue-list bus={ this.bus } todos={ this.todos } class="issue-list"></issues-list>
 
     <script>
 
@@ -20,6 +20,17 @@
       * console.log(bus);*/
      this.todos = new TodoCollection(this, bus);
      this.projects = new ProjectCollection(this, opts.bus);
+
+
+     this.bus.on('deleteIssue', (uuid) => {
+       this.todos.deleteIssue(uuid);
+//       this.todos.trigger('todosUpdated');
+     });
+     this.bus.on('completeIssue', (issue) => {
+       this.todos.completeIssue(issue);
+       //      this.bus.trigger('todosUpdated');
+     });
+
 
     </script>
 </content-container>
