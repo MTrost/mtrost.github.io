@@ -1,16 +1,20 @@
 <issue-list>
   <table>
 
-    <tr>
-      <th class="table-heading"><a href="#">Done</a></th>
+    <thead>
+      <tr>
+      <th onclick={sort} class="table-heading"><a href="#">Done</a></th>
       <th class="issue table-heading"><a href="#">Issue</a></th>
+      <th></th>
       <th class="table-heading"><a href="#">Priority</a></th>
       <th class="table-heading"><a href="#">Due Date</a></th>
       <th class="table-heading"><a href="#">Project</a></th>
     </tr>
 
+      </thead>
+
     <tbody>
-      <tr  bus={ opts.bus } each="{ allTodos() }" data-is="issue">
+      <tr  each="{ allTodos() }" data-is="issue">
       </tr>
     </tbody>
   </table>
@@ -28,8 +32,16 @@
      return tag.todos.all(tag.selectedProject);
    }
 
+   tag.sort = (e) => {
+     debugger;
+     e.preventDefault();
+     console.log(e);
+     console.log(e.srcElement);
+   }
+
    // Listeners
    tag.bus.on('todosUpdated', () => {
+     debugger;
      tag.update();
    });
 
@@ -46,7 +58,7 @@
    });
 
    this.on('mount', () => {
-     todos.fetch();
+     tag.todos.fetch();
    });
 
   </script>

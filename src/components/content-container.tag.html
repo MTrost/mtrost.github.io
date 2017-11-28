@@ -1,8 +1,8 @@
 <content-container class="content-container">
   <div class="project-row">
 
-    <project-list projects={ this.projects }></project-list>
-    <projectForm projects={ this.projects }></projectForm>
+    <project-list bus={ bus } projects={ projects.collection }></project-list>
+    <projectForm bus={ bus } projects={ projects }></projectForm>
 
   </div>
 
@@ -14,19 +14,19 @@
 
     <script>
 
-     var tag = this;
-     this.bus = opts.bus;
+     const tag = this;
+     tag.bus = opts.bus;
      /* console.log(opts.bus);
       * console.log(bus);*/
-     this.todos = new TodoCollection(this, bus);
-     this.projects = new ProjectCollection(this, opts.bus);
+     tag.todos = new TodoCollection(this, tag.bus);
+     tag.projects = new ProjectCollection(this, tag.bus);
 
 
-     this.bus.on('deleteIssue', (uuid) => {
+     tag.bus.on('deleteIssue', (uuid) => {
        this.todos.deleteIssue(uuid);
 //       this.todos.trigger('todosUpdated');
      });
-     this.bus.on('completeIssue', (issue) => {
+     tag.bus.on('completeIssue', (issue) => {
        this.todos.completeIssue(issue);
        //      this.bus.trigger('todosUpdated');
      });

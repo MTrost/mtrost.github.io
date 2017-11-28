@@ -78,6 +78,9 @@ body {
     min-height: 0;
     min-width: 0;
 }
+.selected {
+    background-color: #dcb;
+}
 .new-projects-row {
     grid-row: 2;
     display: grid;

@@ -1,6 +1,6 @@
 <project>
-  <li onclick={select}>
-    { name }
+  <li onclick={select} class=" { selected : project.active } ">
+    { project.title }
   </li>
 
   <script>
@@ -8,10 +8,16 @@
    var tag = this;
    tag.bus = opts.bus;
 
+   console.log(tag.project);
+
    // Functions
    tag.select = (el) => {
      el.preventDefault();
-     this.bus.trigger('projectSelected', el, tag._item);
+     console.log(this.project);
+//     console.log(this.project);
+     this.project.active = !this.project.active;
+//     console.log(this.project.selected);
+     //this.bus.trigger('projectSelected', el, tag._item);
    }
 
   </script>

@@ -1,7 +1,7 @@
 <project-list>
   <div class="projects">
     <ul class="project-list">
-      <project bus={ bus } each="{ allProjects() }"></project>
+      <project bus={ bus } each="{ project in projects }"></project>
     </ul>
   </div>
 
@@ -9,7 +9,7 @@
 
    const tag = this;
    tag.projects = opts.projects;
-   tag.bus = tag.projects.bus;
+   tag.bus = opts.bus;
    tag.selectedProject = "";
 
    // Functions
@@ -19,6 +19,7 @@
 
    // Listeners
    bus.on('projectsUpdated', () => {
+     debugger;
      this.update();
    });
 
@@ -38,9 +39,10 @@
      }
    });
 
-   this.on('mount', () => {
-     this.projects.fetch();
-   });
+//   this.on('mount', () => {
+//debugger;
+//     this.projects.fetch();
+//   });
 
 
   </script>

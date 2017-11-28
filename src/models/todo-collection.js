@@ -34,21 +34,18 @@ class TodoCollection extends BaseCollection {
   }
 
   completeIssue(tag) {
-    debugger;
     let index = this.collection.findIndex(issue => issue.uuid === tag.uuid);
-    console.log(this.collection[index]);
-    debugger;
+
     this.collection[index].done = !this.collection[index].done;
-    console.log(this.collection[index]);
+
 
     this.save();
     this.bus.trigger('todosUpdated');
   }
 
   all(selectedProject) {
-    debugger;
     if(selectedProject) {
-      console.log(selectedProject);
+//      console.log(selectedProject);
       return this.collection.filter(issue => issue.project === selectedProject);
     }
     else return this.collection;

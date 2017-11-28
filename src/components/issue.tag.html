@@ -1,8 +1,11 @@
 <issue if={ uuid }>
-  <td onclick={ complete }><input type="checkbox" checked={ done }/>
+  <td checked={ done }><input type="checkbox"  onclick="{ complete }"/>
   </td>
   <td>
     { name }
+  </td>
+  <td>
+   Done: { done ? "true" : "false" }
   </td>
   <td>
     { priority }
@@ -20,12 +23,11 @@
 
 
   <script>
-   const tag = this;
+   // Properties
+   var tag = this;
+   tag.bus = this.parent.bus;
 
-   tag.bus = opts.bus;
-
-
-
+   // functions
    tag.deleteIssue = (e) => {
      e.preventDefault();
      if(confirm("I haven't even watched C-Beams glitter in the dark near"+

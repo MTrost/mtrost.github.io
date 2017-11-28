@@ -21,14 +21,15 @@ class BaseCollection {
 
   // Saving collection to localStorage
   save() {
+    debugger;
     localStorage.setItem(this.localStorage_key, JSON.stringify(this.collection));
   }
 
   // Adds a model to the collection and persists it
   add(model){
-    model.uuid = this.generateUUID();
+    model.client_id = this.generateUUID();
     this.collection.push(model);
-    this.save();
+
 //    this.riotjs_tag.update();
     this.bus.trigger('collectionUpdated');
   }
