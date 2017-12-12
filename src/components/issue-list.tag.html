@@ -1,20 +1,17 @@
 <issue-list>
   <table>
-
-    <thead>
-      <tr>
-      <th onclick={sort} class="table-heading"><a href="#">Done</a></th>
-      <th class="issue table-heading"><a href="#">Issue</a></th>
-      <th></th>
-      <th class="table-heading"><a href="#">Priority</a></th>
-      <th class="table-heading"><a href="#">Due Date</a></th>
-      <th class="table-heading"><a href="#">Project</a></th>
-    </tr>
-
-      </thead>
-
     <tbody>
-      <tr  each="{ allTodos() }" data-is="issue">
+
+      <tr>
+        <td onclick={sort} class="table-heading"><a href="#">Done</a></td>
+        <td class="issue table-heading"><a href="#">Issue</a></td>
+        <td class="table-heading"><a href="#">Priority</a></td>
+        <td class="table-heading"><a href="#">Due Date</a></td>
+        <td class="table-heading"><a href="#">Project</a></td>
+        <td></td>
+      </tr>
+
+      <tr each="{ todo in todosCollection }" class=" { completed : todo.done } " data-is="issue">
       </tr>
     </tbody>
   </table>
@@ -22,15 +19,10 @@
   <script>
    // Properties
    const tag = this;
-   tag.todos = opts.todos;
-   tag.bus = tag.todos.bus;
+//   tag.todos = opts.todos;
+   tag.bus = opts.bus;
    tag.selectedProject = "";
-
-   // Functions
-   tag.allTodos = () => {
-     //     debugger;
-     return tag.todos.all(tag.selectedProject);
-   }
+   tag.todosCollection = opts.todos;
 
    tag.sort = (e) => {
      debugger;
@@ -42,23 +34,17 @@
    // Listeners
    tag.bus.on('todosUpdated', () => {
      debugger;
+     tag.todosCollection = opts.todos;
      tag.update();
    });
 
-   tag.bus.on('projectSelected', (el, project) => {
-//     debugger;
-     if(tag.selectedProject === project.uuid) {
-       tag.selectedProject = "";
-     }
-     else {
-       tag.selectedProject = project.uuid;
-     }
-     //     debugger;
-     tag.bus.trigger('todosUpdated');
+   tag.bus.on('projectSelected', () => {
+     tag.todosCollection = opts.todos;
+     tag.update();
    });
 
    this.on('mount', () => {
-     tag.todos.fetch();
+//     tag.todos.fetch();
    });
 
   </script>

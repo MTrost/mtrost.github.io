@@ -1,0 +1,65 @@
+<issue-tracker class="content-container">
+  <div class="project-row">
+
+    <project-list bus={ bus } projects={ projects.collection }></project-list>
+    <projectForm bus={ bus } ></projectForm>
+
+  </div>
+
+
+  <new-issues-row todos={ this.todos } class="new-projects-row"></new-issues-row>
+
+
+  <issue-list bus={ this.bus } todos={ this.selectedTodos } class="issue-list"></issues-list>
+
+    <script>
+
+     const tag = this;
+     tag.bus = opts.bus;
+     /* console.log(opts.bus);
+      * console.log(bus);*/
+     tag.todos = new TodoCollection(this, tag.bus);
+     tag.projects = new ProjectCollection(this, tag.bus);
+     tag.selectedTodos = tag.todos.all(tag.projects.getActiveProjects()) || [];
+
+     tag.bus.on('completeIssue', (issue) => {
+       this.todos.completeIssue(issue);
+       //this.bus.trigger('todosUpdated');
+       tag.update();
+       tag.bus.trigger('todosUpdated');
+     });
+     tag.bus.on('deleteIssue', (uuid) => {
+       this.todos.deleteIssue(uuid);
+       //       this.todos.trigger('todosUpdated');
+     });
+
+     tag.bus.on('issueCreated', (title, due_date, priority) => {
+       if(tag.projects.getActiveProjects().length === 1) {
+         tag.todos.add(title, due_date, priority, tag.projects.getActiveProjects()[0]);
+         debugger;
+         tag.selectedTodos = tag.todos.all(tag.projects.getActiveProjects());
+         tag.update();
+         tag.bus.trigger('todosUpdated');
+       } else {
+       alert("To which project does the todo belong?");
+       }
+     });
+
+     tag.bus.on('todosUpdated', () => {
+      tag.selectedTodos = tag.todos.all(tag.projects.getActiveProjects());
+      tag.update();
+//       tag.trigger('todosUpdated');
+     });
+
+     tag.bus.on('projectCreated', (name) => {
+       tag.projects.add({ "title" : name}, tag);
+     });
+     tag.bus.on('projectSelected', () => {
+       debugger;
+       tag.selectedTodos = tag.todos.all(tag.projects.getActiveProjects());
+       debugger;
+       tag.update();
+     });
+
+    </script>
+</issue-tracker>

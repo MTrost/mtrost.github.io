@@ -18,6 +18,10 @@ class ProjectCollection extends BaseCollection {
     this.bus.trigger('projectsUpdated');
   }
 
+  getActiveProjects() {
+    return this.collection.filter(project => project.active === true);
+    }
+
   save(model) {
     super.save();
     console.log(model);
@@ -28,9 +32,7 @@ class ProjectCollection extends BaseCollection {
       contentType: "application/json",
       dataType: "json",
       success: (response) => {
-        console.log(response);
         console.log("Success!");
-        console.log(this);
         this.collection.filter(project => project.client_id === response.client_id)[0].id = response.id;
         super.save();
 

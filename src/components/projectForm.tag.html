@@ -4,18 +4,15 @@
 
 
   <script>
-   var tag = this;
-
-   var projects = opts.projects;
+   const tag = this,
+         bus = opts.bus;
 
    tag.submit = () => {
-     if (tag.name.value) {
-
-       projects.add({ "title" : tag.name.value }, tag);
+     if(tag.name.value) {
+       bus.trigger('projectCreated', tag.name.value);
        tag.name.value = '';
-     }
-     else {
-       alert("Choose a name for the project.");
+     } else {
+       alert('Choose a name for the project, dummy!');
      }
    }
 

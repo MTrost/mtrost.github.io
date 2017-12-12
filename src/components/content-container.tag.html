@@ -2,7 +2,7 @@
   <div class="project-row">
 
     <project-list bus={ bus } projects={ projects.collection }></project-list>
-    <projectForm bus={ bus } projects={ projects }></projectForm>
+    <projectForm bus={ bus } ></projectForm>
 
   </div>
 
@@ -24,11 +24,21 @@
 
      tag.bus.on('deleteIssue', (uuid) => {
        this.todos.deleteIssue(uuid);
-//       this.todos.trigger('todosUpdated');
+       //       this.todos.trigger('todosUpdated');
      });
      tag.bus.on('completeIssue', (issue) => {
        this.todos.completeIssue(issue);
        //      this.bus.trigger('todosUpdated');
+     });
+     tag.bus.on('projectCreated', (name) => {
+       if (name) {
+
+         tag.projects.add({ "title" : name}, tag);
+         tag.name.value = '';
+       }
+       else {
+         alert("Choose a name for the project.");
+       }
      });
 
 

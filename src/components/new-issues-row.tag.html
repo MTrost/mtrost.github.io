@@ -15,7 +15,7 @@
    //   console.log(opts);
    var tag = this;
    var todos = opts.todos;
-   var bus = todos.bus;
+   tag.bus = todos.bus;
    var selectedProject = "";
 
    bus.on('projectSelected', (el, project) => {
@@ -29,27 +29,29 @@
    });
 
    tag.submit = () => {
-     console.log(selectedProject);
+
      var priority = tag.priority.value,
-         date = tag.date.value,
-         project = this.selectedProject,
-         name = tag.name.value;
+         due_date = tag.date.value,
+//         project = this.selectedProject,
+         title = tag.name.value;
 
      if (priority === 'Priority') {
        alert("Assign a priority to new todo");
      }
-     else if (date === 'Pick a date') {
+     else if (due_date === 'Pick a date') {
        alert("Set a due date for new todo");
      }
-     else if (!selectedProject) {
-       alert("To which project does the todo belong");
-     }
-     else if (name === "") {
+     /* else if (selectedProject) {
+      *   alert("To which project does the todo belong");
+      * }*/
+     else if (title === "") {
        alert("Set a name for new todo");
      }
      else {
-       todos.add(name, date, priority, project);
-       console.log(project);
+
+       this.bus.trigger('issueCreated', title, due_date, priority);
+//       todos.add(name, date, priority, project);
+//       console.log(project);
        tag.name.value = '';
      }
    }

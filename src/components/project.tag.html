@@ -17,7 +17,7 @@
 //     console.log(this.project);
      this.project.active = !this.project.active;
 //     console.log(this.project.selected);
-     //this.bus.trigger('projectSelected', el, tag._item);
+     this.bus.trigger('projectSelected', el, tag._item);
    }
 
   </script>

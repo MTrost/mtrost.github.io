@@ -10,7 +10,6 @@
    const tag = this;
    tag.projects = opts.projects;
    tag.bus = opts.bus;
-   tag.selectedProject = "";
 
    // Functions
    tag.allProjects = () => {
@@ -22,27 +21,6 @@
      debugger;
      this.update();
    });
-
-   bus.on('projectSelected', (el) => {
-     if(!this.selectedProject) {
-       this.selectedProject = el.srcElement;
-       this.selectedProject.classList.toggle('selected');
-     }
-     else if (this.selectedProject === el.srcElement) {
-       this.selectedProject.classList.toggle('selected');
-       this.selectedProject = "";
-     }
-     else {
-       this.selectedProject.classList.toggle('selected');
-       this.selectedProject = el.srcElement;
-       this.selectedProject.classList.toggle('selected');
-     }
-   });
-
-//   this.on('mount', () => {
-//debugger;
-//     this.projects.fetch();
-//   });
 
 
   </script>

@@ -1,50 +1,60 @@
-<issue if={ uuid }>
-  <td checked={ done }><input type="checkbox"  onclick="{ complete }"/>
+<issue >
+  <td ><input  checked={ todo.done } type="checkbox"  onclick="{ complete }"/>
+  </td>
+  <td onclick={ show }>
+    { todo.title }
   </td>
   <td>
-    { name }
+    { todo.priority }
+  </td>
+  <td onclick={dating}>
+    { todo.due_date.substring(0, 10) }
   </td>
   <td>
-   Done: { done ? "true" : "false" }
-  </td>
-  <td>
-    { priority }
-  </td>
-  <td>
-    { date }
-  </td>
-  <td>
-    { projectName }
+    { todo.projectName }
   </td>
   <td>
     <a onclick={ deleteIssue } class="wastebin" href="#"><span class="wastebin" style="text-decoration: none;">&#128465;</span></a>
   </td>
 
-
-
   <script>
    // Properties
-   var tag = this;
+   const tag = this;
    tag.bus = this.parent.bus;
 
-   // functions
+
+   dating() {
+     console.log(tag.todo.due_date);
+   }
+
+   // Functions
    tag.deleteIssue = (e) => {
      e.preventDefault();
-     if(confirm("I haven't even watched C-Beams glitter in the dark near"+
-                " the Tannhäuser Gate, for god's sake. \n\nTime to die?")) {
-       tag.bus.trigger('deleteIssue', tag.uuid);
+     if(confirm("Time to die?")) {
+       debugger;
+       tag.bus.trigger('deleteIssue', tag.todo);
      }
+   }
+
+   tag.done = (e) => {
+     e.preventDefault();
+     return tag.todo.done;
+   }
+
+   tag.show = () => {
+     console.log(this);
    }
 
    tag.complete = (e) => {
      e.preventDefault();
-     console.log(tag.done);
-     console.log(tag);
-     //tag.done = !tag.done;
-
+     console.log(tag.todo.done);
+     tag.todo.done = !tag.todo.done;
+     console.log(tag.todo.done);
+     console.log(tag.todo);
      //     var done = tag.done;
-     bus.trigger('completeIssue', tag);
+     bus.trigger('completeIssue', tag.todo);
      //setTimeout(tag.update(), 3000);
+     tag.update();
    }
 
   </script>
@@ -68,6 +78,8 @@
        -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
        -webkit-transform: rotate(-90.0deg);  /* Saf3.1+, Chrome */
    }
+
+
   </style>
 
 
