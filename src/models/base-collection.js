@@ -59,7 +59,7 @@ class BaseCollection {
           // var url = "http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + id + "/issues";
           $.ajax({
             method: "GET",
-            url: "http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + project.id + "/issues",
+            url: "https://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + project.id + "/issues",
             dataType: "json",
             success: (response) => {
               for(var j = 0; j < response.length; j++) {
