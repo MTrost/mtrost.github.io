@@ -1,7 +1,8 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
       morgan = require('morgan'),
-      app = express();
+      app = express(),
+      PORT = process.env.PORT || 5000;
 
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/'));
@@ -23,6 +24,6 @@ app.get('/', (req, res) => {
   res.render('index.html');
   });
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(PORT, () => {
+  console.log(`Server is up on port ${ PORT }`);
   });
