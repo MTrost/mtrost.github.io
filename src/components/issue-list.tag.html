@@ -32,10 +32,10 @@
    }
 
    // Listeners
-   tag.bus.on('todosUpdated', () => {
+   tag.on('update', () => {
      debugger;
      tag.todosCollection = opts.todos;
-     tag.update();
+     //tag.update();
    });
 
    tag.bus.on('projectSelected', () => {

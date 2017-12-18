@@ -12,7 +12,7 @@
 
   <issue-list bus={ this.bus } todos={ this.todos } class="issue-list"></issues-list>
 
-    <script>
+    <script> find the nistake
 
      const tag = this;
      tag.bus = opts.bus;
@@ -32,7 +32,6 @@
      });
      tag.bus.on('projectCreated', (name) => {
        if (name) {
-
          tag.projects.add({ "title" : name}, tag);
          tag.name.value = '';
        }

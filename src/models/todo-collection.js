@@ -1,14 +1,14 @@
 class TodoCollection extends BaseCollection {
 
-  constructor(tag, bus) {
+  constructor(tag, bus, projects) {
 
     // Configuration
     var localStorage_key = 'todos';
 
-    super(tag, localStorage_key, bus);
+    super(tag, localStorage_key, bus, projects);
 
     // Setup
-    this.fetch();
+    this.fetch(projects);
     //     this.bus.on('deleteIssue', (uuid) => {
     //       this.deleteIssue(uuid);
     //       this.bus.trigger('todosUpdated');
@@ -59,10 +59,13 @@ class TodoCollection extends BaseCollection {
   completeIssue(todo) {
     //    this.save();
     super.save();
+    debugger;
     $.ajax({
       method: "PUT",
       url: "http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + todo.project_id + "/issues/" + todo.id,
       data: JSON.stringify(todo),
+      contentType: "application/json",
+      dataType: "json",
       success: (response) => {
         console.log("Updated todo, you rock");
       }

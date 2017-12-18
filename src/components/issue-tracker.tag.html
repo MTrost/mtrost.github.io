@@ -18,8 +18,11 @@
      tag.bus = opts.bus;
      /* console.log(opts.bus);
       * console.log(bus);*/
-     tag.todos = new TodoCollection(this, tag.bus);
      tag.projects = new ProjectCollection(this, tag.bus);
+     console.log("projects:");
+     console.log(tag.projects.collection);
+     tag.todos = new TodoCollection(this, tag.bus, tag.projects.collection);
+
      tag.selectedTodos = tag.todos.all(tag.projects.getActiveProjects()) || [];
 
      tag.bus.on('completeIssue', (issue) => {
@@ -41,14 +44,14 @@
          tag.update();
          tag.bus.trigger('todosUpdated');
        } else {
-       alert("To which project does the todo belong?");
+         alert("To which project does the todo belong?");
        }
      });
 
      tag.bus.on('todosUpdated', () => {
-      tag.selectedTodos = tag.todos.all(tag.projects.getActiveProjects());
-      tag.update();
-//       tag.trigger('todosUpdated');
+       tag.selectedTodos = tag.todos.all(tag.projects.getActiveProjects());
+       tag.update();
+       //       tag.trigger('todosUpdated');
      });
 
      tag.bus.on('projectCreated', (name) => {
