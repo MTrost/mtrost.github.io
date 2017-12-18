@@ -41,7 +41,7 @@ class TodoCollection extends BaseCollection {
     debugger;
     $.ajax({
       method: "POST",
-      url: "http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + issue.project_id + "/issues",
+      url: "https://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + issue.project_id + "/issues",
       data: JSON.stringify(issue),
       contentType: "application/json",
       dataType: "json",
