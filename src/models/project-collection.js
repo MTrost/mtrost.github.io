@@ -27,7 +27,7 @@ class ProjectCollection extends BaseCollection {
     console.log(model);
     $.ajax({
       method: "POST",
-      url: "http://zhaw-issue-tracker-api.herokuapp.com/api/projects",
+      url: "https://zhaw-issue-tracker-api.herokuapp.com/api/projects",
       data: JSON.stringify(model),
       contentType: "application/json",
       dataType: "json",
