@@ -62,7 +62,7 @@ class TodoCollection extends BaseCollection {
     debugger;
     $.ajax({
       method: "PUT",
-      url: "http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + todo.project_id + "/issues/" + todo.id,
+      url: "https://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + todo.project_id + "/issues/" + todo.id,
       data: JSON.stringify(todo),
       contentType: "application/json",
       dataType: "json",
@@ -95,7 +95,7 @@ class TodoCollection extends BaseCollection {
     super.save();
     $.ajax({
       method: "DELETE",
-      url: "http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + todo.project_id + "/issues/" + todo.id,
+      url: "https://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + todo.project_id + "/issues/" + todo.id,
       success: (response) => {
         console.log("Deleted issue, you rock");
       }
